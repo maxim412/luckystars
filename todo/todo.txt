@@ -1,0 +1,8 @@
+Plan:
+
+Make a game where the user moves over objects that appear all the same but some decrease score, others increase
+
+at the end, reveal the score.
+
+
+TODO: Separate play and quit functions, classes, etc
