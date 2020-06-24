@@ -9,12 +9,17 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Source Files\other">
       <UniqueIdentifier>{7716fb6c-e7cf-4e56-b453-840fe6dc2860}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\main">
+      <UniqueIdentifier>{ec21010e-c73c-4e5b-a6d8-a13212c665fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\main">
+      <UniqueIdentifier>{0a9c519e-05d8-4bfa-a921-fd77303c599d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\other">
+      <UniqueIdentifier>{fd0c0e2e-beeb-4ceb-9ffd-5dcb43c5f65c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -25,24 +30,26 @@
       <Filter>Source Files\other</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="game.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\main</Filter>
     </ClInclude>
     <ClInclude Include="npc.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\other</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>Header Files\other</Filter>
     </ClInclude>
     <ClInclude Include="world.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="todo\todo.txt" />
+    <Text Include="todo\todo.txt">
+      <Filter>Source Files\other</Filter>
+    </Text>
   </ItemGroup>
 </Project>

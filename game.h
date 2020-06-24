@@ -1,6 +1,8 @@
 #pragma once
 #include "player.h"
 #include "world.h"
+#include <stdlib.h>
+
 string lower_string(string str)
 {
 	for (int i = 0; str[i] != '\0'; i++)
@@ -15,7 +17,7 @@ void newmalePlayer()
 	Human::Male newPlayer;
 	printf("\nNew male player created\n");
 
-	printf("\033c");
+	system("cls");
 
 	int age, height, weight;
 	string name;
@@ -32,7 +34,7 @@ void newmalePlayer()
 	cin >> name;
 	cout << "\n";
 	newPlayer.setStats(age, height, weight, name);
-	printf("\033c");
+	system("cls");
 	//newPlayer.printStats(); TODO: add to cursor
 
 }
@@ -41,7 +43,7 @@ void newfemalePlayer()
 	Human::Female newPlayer;
 	printf("\nNew female player created\n");
 
-	printf("\033c");
+	system("cls");
 
 	int age, height, weight;
 	string name;
@@ -58,7 +60,7 @@ void newfemalePlayer()
 	cin >> name;
 	cout << "\n";
 	newPlayer.setStats(age, height, weight, name);
-	printf("\033c");
+	system("cls");
 	/*newPlayer.printStats();*/
 
 }
@@ -108,7 +110,7 @@ int quit()
 					if (lower_string(play) == "yes")
 					{
 						cout << endl;
-						printf("\033c"); // clear console
+						system("cls"); // clear console
 						/*createPlayer();*/
 						printWorld();
 						move();
@@ -150,8 +152,9 @@ void play()
 		{
 			
 			cout << endl;
-			printf("\033c"); // clear console
+			system("cls"); // clear console
 			//createPlayer(); implement after adding label to player of this in game world
+			printInstructions();
 			printWorld();
 			move();
 			break;

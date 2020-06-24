@@ -3,8 +3,6 @@
 #include <Windows.h>
 using namespace std;
 
-
-
 class NPC
 {
 public:

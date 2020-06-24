@@ -1,20 +1,12 @@
 #include "player.h"
 #include <iostream>
 
-Human::Human()
-{
-}
-Human::~Human()
-{
-}
+Human::Human(){}
+Human::~Human(){}
 
-Human::Male::Male()
-{
+Human::Male::Male(){}
+Human::Male::~Male(){}
 
-}
-Human::Male::~Male()
-{
-}
 void Human::Male::setStats(int a, int h, int w, string n)
 {
 	this->age = a;

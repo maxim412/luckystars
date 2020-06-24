@@ -6,11 +6,16 @@
 #include <vector>
 #include "npc.h"
 #include "time.h"
+#include <stdlib.h>  
 using namespace std;
 
 COORD badNpcPositions[5];
 COORD goodNpcPositions[5];
 int score = 0;
+
+int goodScore;
+int badScore;
+
 
 
 void setCursorPos(int XPos, int YPos) {
@@ -31,21 +36,14 @@ void spawnGoodNPC()
     for (int i = 0; i < 5; i++)
     {
 
-        int randX = rand() % 40;
-        int randY = rand() % 20;
+        int randX = rand() % 40 + 1;
+        int randY = rand() % 20 + 1;
 
         points[i].setPosition(randX, randY);
-        points[i].setAppearance("X");
+        points[i].setAppearance("*");
         cout << points[i].getAppearance();
 
         goodNpcPositions[i] = points[i].getPosition();
-
-        COORD x = getCursorPosition();
-
-        int xInt = x.X;
-        int yInt = x.Y;
-        setCursorPos(xInt - 3, yInt + 1);
-        cout << points[i].getPosition().X << "," << points[i].getPosition().Y;
     }
 
 
@@ -61,21 +59,15 @@ void spawnBadNPC()
     for (int i = 0; i < 5; i++)
     {
 
-        int randX = rand() % 40;
-        int randY = rand() % 20;
+        int randX = rand() % 40 +1 ;
+        int randY = rand() % 20 +1 ;
 
         minuses[i].setPosition(randX, randY);
-        minuses[i].setAppearance("Y"); // change back to x to trick user 
+        minuses[i].setAppearance("*"); 
         cout << minuses[i].getAppearance();
 
         badNpcPositions[i] = minuses[i].getPosition();
 
-        COORD y = getCursorPosition();
-
-        int xInt = y.X;
-        int yInt = y.Y;
-        setCursorPos(xInt - 3, yInt + 1);
-        cout << minuses[i].getPosition().X << "," << minuses[i].getPosition().Y;
     }
 
 
@@ -110,8 +102,18 @@ void printWorld()
         cout << 0;
     }
 
+
     spawnGoodNPC();
     spawnBadNPC();
+}
+
+void printInstructions()
+{
+	setCursorPos(35, 10);
+	cout << "Collect the stars and see if they're lucky!";
+	Sleep(3000);
+	system("cls");
+	return;
 }
 void checkForWalls()
 {
@@ -143,16 +145,13 @@ void checkForWalls()
 }
 void checkForNPC()
 {
-    
     int z = getCursorPosition().X;
     int j = getCursorPosition().Y;
-
     for (int x = 0; x < 5; x++)
     {
-
         if (z == goodNpcPositions[x].X && j == goodNpcPositions[x].Y)
         {
-            score++;
+            goodScore++;
         }
     }
 
@@ -161,7 +160,7 @@ void checkForNPC()
 
         if (z == badNpcPositions[i].X && j == badNpcPositions[i].Y)
         {
-            score--;
+            badScore++;
         }
     }
 
@@ -200,8 +199,9 @@ int move()
         }
         else if (f == 27) 
         {
-            printf("\033c");
-            cout << score;
+			system("cls");
+            cout << "Lucky stars: " << goodScore << "\n";
+			cout << "Unlucky stars: " << badScore << "\n";
             return 0;
         }
     }
