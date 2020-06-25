@@ -2,7 +2,12 @@
 #include "player.h"
 #include "world.h"
 #include <stdlib.h>
-
+void game()
+{
+	printInstructions();
+	printWorld();
+	move();
+}
 string lower_string(string str)
 {
 	for (int i = 0; str[i] != '\0'; i++)
@@ -112,8 +117,7 @@ int quit()
 						cout << endl;
 						system("cls"); // clear console
 						/*createPlayer();*/
-						printWorld();
-						move();
+						game();
 						break;
 					}
 					else if (lower_string(play) == "no")
@@ -140,6 +144,7 @@ int quit()
 	}
 	return 0;
 }
+
 void play()
 {
 	while (true)
@@ -154,9 +159,7 @@ void play()
 			cout << endl;
 			system("cls"); // clear console
 			//createPlayer(); implement after adding label to player of this in game world
-			printInstructions();
-			printWorld();
-			move();
+			game();
 			break;
 		}
 		else if (lower_string(play) == "no")

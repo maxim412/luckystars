@@ -172,7 +172,7 @@ int checkIfWin()
         cout << "You win!!" << "\n";
         cout << "Lucky stars: " << goodScore << "\n";
         cout << "Unlucky stars: " << badScore << "\n";
-        return 0;
+        exit(0);
     }
     else if (badScore == 5)
     {
@@ -180,7 +180,7 @@ int checkIfWin()
         cout << "You lose." << "\n";
         cout << "Lucky stars: " << goodScore << "\n";
         cout << "Unlucky stars: " << badScore << "\n";
-        return 0;
+        exit(0);
     }
 }
 int move()
