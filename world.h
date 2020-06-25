@@ -51,7 +51,6 @@ void spawnGoodNPC()
     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
 
-
 }
 void spawnBadNPC()
 {
@@ -110,7 +109,7 @@ void printWorld()
 void printInstructions()
 {
 	setCursorPos(35, 10);
-	cout << "Collect the stars and see if they're lucky!";
+	cout << "See if you can collect five lucky stars!!";
 	Sleep(3000);
 	system("cls");
 	return;
@@ -165,6 +164,25 @@ void checkForNPC()
     }
 
 }
+int checkIfWin()
+{
+    if (goodScore == 5)
+    {
+        system("cls");
+        cout << "You win!!" << "\n";
+        cout << "Lucky stars: " << goodScore << "\n";
+        cout << "Unlucky stars: " << badScore << "\n";
+        return 0;
+    }
+    else if (badScore == 5)
+    {
+        system("cls");
+        cout << "You lose." << "\n";
+        cout << "Lucky stars: " << goodScore << "\n";
+        cout << "Unlucky stars: " << badScore << "\n";
+        return 0;
+    }
+}
 int move()
 {
     setCursorPos(0, 0);
@@ -172,6 +190,7 @@ int move()
     {
         checkForWalls();
         checkForNPC();
+        checkIfWin();
         int x = getCursorPosition().X;
         int y = getCursorPosition().Y;
         int f;
@@ -200,8 +219,6 @@ int move()
         else if (f == 27) 
         {
 			system("cls");
-            cout << "Lucky stars: " << goodScore << "\n";
-			cout << "Unlucky stars: " << badScore << "\n";
             return 0;
         }
     }
