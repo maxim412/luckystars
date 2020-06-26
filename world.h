@@ -11,7 +11,9 @@ using namespace std;
 
 COORD badNpcPositions[5];
 COORD goodNpcPositions[5];
-int score = 0;
+
+COORD alreadyTouchedGoodStars[5];
+COORD alreadyTouchedBadStars[5];
 
 int goodScore;
 int badScore;
@@ -105,7 +107,6 @@ void printWorld()
     spawnGoodNPC();
     spawnBadNPC();
 }
-
 void printInstructions()
 {
 	setCursorPos(35, 10);
@@ -146,22 +147,31 @@ void checkForNPC()
 {
     int z = getCursorPosition().X;
     int j = getCursorPosition().Y;
-    for (int x = 0; x < 5; x++)
+    for (int x = 0; x < 5; x++) 
     {
-        if (z == goodNpcPositions[x].X && j == goodNpcPositions[x].Y)
+        if (z == goodNpcPositions[x].X && j == goodNpcPositions[x].Y) // if player's current coordinate is equal to list of good npcs ( if player touched a star )
         {
-            goodScore++;
+            for (int i = 0; i < 5; i++) // and if that star isn't part of the array of already touched stars, add it to to alreadytouched stars, else, don't add it ( nothing )
+            {
+                if (z != alreadyTouchedGoodStars[i].X && j != alreadyTouchedGoodStars[i].X)
+                {
+                    alreadyTouchedGoodStars[i].X == z && alreadyTouchedGoodStars[i].Y == j;
+                    cout << alreadyTouchedGoodStars[i].X;
+                    cout << alreadyTouchedGoodStars[i].Y;
+                }
+            }
         }
     }
 
-    for (int i = 0; i < 5; i++)
+
+    /*for (int i = 0; i < 5; i++)
     {
 
         if (z == badNpcPositions[i].X && j == badNpcPositions[i].Y)
         {
             badScore++;
         }
-    }
+    }*/
 
 }
 int checkIfWin()
