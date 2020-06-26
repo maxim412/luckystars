@@ -8,16 +8,10 @@
 #include "time.h"
 #include <stdlib.h>  
 using namespace std;
-
 COORD badNpcPositions[5];
 COORD goodNpcPositions[5];
-
-COORD alreadyTouchedGoodStars[5];
-COORD alreadyTouchedBadStars[5];
-
 int goodScore;
 int badScore;
-
 
 
 void setCursorPos(int XPos, int YPos) {
@@ -38,8 +32,8 @@ void spawnGoodNPC()
     for (int i = 0; i < 5; i++)
     {
 
-        int randX = rand() % 40 + 1;
-        int randY = rand() % 20 + 1;
+        int randX = rand() % 25 + 2;
+        int randY = rand() % 25 + 2;
 
         points[i].setPosition(randX, randY);
         points[i].setAppearance("*");
@@ -60,8 +54,8 @@ void spawnBadNPC()
     for (int i = 0; i < 5; i++)
     {
 
-        int randX = rand() % 40 +1 ;
-        int randY = rand() % 20 +1 ;
+        int randX = rand() % 25 +2 ;
+        int randY = rand() % 25 +2 ;
 
         minuses[i].setPosition(randX, randY);
         minuses[i].setAppearance("*"); 
@@ -102,8 +96,6 @@ void printWorld()
         setCursorPos(i, 100);
         cout << 0;
     }
-
-
     spawnGoodNPC();
     spawnBadNPC();
 }
@@ -111,7 +103,7 @@ void printInstructions()
 {
 	setCursorPos(35, 10);
 	cout << "See if you can collect five lucky stars!!";
-	Sleep(3000);
+	Sleep(1500);
 	system("cls");
 	return;
 }
@@ -145,51 +137,49 @@ void checkForWalls()
 }
 void checkForNPC()
 {
-    int z = getCursorPosition().X;
-    int j = getCursorPosition().Y;
-    for (int x = 0; x < 5; x++) 
+    COORD currentPosition = getCursorPosition();
+    COORD alreadyTouchedBadStars[5];
+    COORD alreadyTouchedGoodStars[5];
+
+    for (int i = 0; i < 5; i++)
     {
-        if (z == goodNpcPositions[x].X && j == goodNpcPositions[x].Y) // if player's current coordinate is equal to list of good npcs ( if player touched a star )
+        if ((currentPosition.X != alreadyTouchedBadStars[i].X && currentPosition.Y != alreadyTouchedBadStars[i].X) && (currentPosition.X == badNpcPositions[i].X && currentPosition.Y == badNpcPositions[i].Y))
         {
-            for (int i = 0; i < 5; i++) // and if that star isn't part of the array of already touched stars, add it to to alreadytouched stars, else, don't add it ( nothing )
-            {
-                if (z != alreadyTouchedGoodStars[i].X && j != alreadyTouchedGoodStars[i].X)
-                {
-                    alreadyTouchedGoodStars[i].X == z && alreadyTouchedGoodStars[i].Y == j;
-                    cout << alreadyTouchedGoodStars[i].X;
-                    cout << alreadyTouchedGoodStars[i].Y;
-                }
-            }
+            alreadyTouchedBadStars[i] = currentPosition;
+            /*cout << alreadyTouchedBadStars[i].X << "," << alreadyTouchedBadStars[i].Y;*/
+            badScore++;
+            cout << " ";
         }
     }
 
-
-    /*for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 5; i++)
     {
-
-        if (z == badNpcPositions[i].X && j == badNpcPositions[i].Y)
+        if ((currentPosition.X != alreadyTouchedGoodStars[i].X && currentPosition.Y != alreadyTouchedGoodStars[i].X) && (currentPosition.X == goodNpcPositions[i].X && currentPosition.Y == goodNpcPositions[i].Y))
         {
-            badScore++;
-        }
-    }*/
+            alreadyTouchedGoodStars[i] = currentPosition;
+            /*cout << alreadyTouchedGoodStars[i].X << "," << alreadyTouchedGoodStars[i].Y;*/
+            goodScore++;
+            cout << " ";
 
+        }
+    }
 }
 int checkIfWin()
 {
     if (goodScore == 5)
     {
         system("cls");
-        cout << "You win!!" << "\n";
+        cout << "You win!!" << "\n\n\n";
         cout << "Lucky stars: " << goodScore << "\n";
-        cout << "Unlucky stars: " << badScore << "\n";
+        cout << "Unlucky stars: " << badScore << "\n\n";
         exit(0);
     }
     else if (badScore == 5)
     {
         system("cls");
-        cout << "You lose." << "\n";
-        cout << "Lucky stars: " << goodScore << "\n";
-        cout << "Unlucky stars: " << badScore << "\n";
+        cout << "You lose." << "\n\n\n";
+        cout << "Unlucky stars: " << badScore << "\n\n";
+        cout << "Lucky stars: " << goodScore << "\n\n";
         exit(0);
     }
 }

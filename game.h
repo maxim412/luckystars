@@ -144,7 +144,6 @@ int quit()
 	}
 	return 0;
 }
-
 void play()
 {
 	while (true)
