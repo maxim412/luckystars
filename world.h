@@ -13,6 +13,9 @@ COORD goodNpcPositions[5];
 int goodScore;
 int badScore;
 
+COORD alreadyTouchedBadStars[5];
+COORD alreadyTouchedGoodStars[5];
+
 
 void setCursorPos(int XPos, int YPos) {
     COORD coord;
@@ -41,12 +44,6 @@ void spawnGoodNPC()
 
         goodNpcPositions[i] = points[i].getPosition();
     }
-
-
-
-    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n";
-
-
 }
 void spawnBadNPC()
 {
@@ -64,9 +61,6 @@ void spawnBadNPC()
         badNpcPositions[i] = minuses[i].getPosition();
 
     }
-
-
-    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n";
 }
 void printWorld()
 {
@@ -101,9 +95,9 @@ void printWorld()
 }
 void printInstructions()
 {
-	setCursorPos(35, 10);
-	cout << "See if you can collect five lucky stars!!";
-	Sleep(1500);
+	setCursorPos(50, 30);
+	cout << "See if you can collect five lucky stars out of all the 10 stars.";
+	Sleep(3000);
 	system("cls");
 	return;
 }
@@ -131,15 +125,11 @@ void checkForWalls()
     {
         y = 99;
         setCursorPos(x, y);
-    }
-    
-    
+    } 
 }
 void checkForNPC()
 {
     COORD currentPosition = getCursorPosition();
-    COORD alreadyTouchedBadStars[5];
-    COORD alreadyTouchedGoodStars[5];
 
     for (int i = 0; i < 5; i++)
     {
