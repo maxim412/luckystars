@@ -10,6 +10,8 @@
 using namespace std;
 COORD badNpcPositions[5];
 COORD goodNpcPositions[5];
+
+COORD randomNPCPositions[5];
 int goodScore;
 int badScore;
 
@@ -43,6 +45,24 @@ void spawnGoodNPC()
         cout << points[i].getAppearance();
 
         goodNpcPositions[i] = points[i].getPosition();
+    }
+}
+void spawnRandomNPC()
+{
+    srand(time(NULL));
+    NPC::enemy randomNPC[5];
+    for (int i = 0; i < 5; i++)
+    {
+
+        int randX = rand() % 25 + 2;
+        int randY = rand() % 25 + 2;
+
+        randomNPC[i].setTitle(""); //make random
+        randomNPC[i].setPosition(randX, randY);
+        randomNPC[i].setAppearance("*"); // make random
+        cout << randomNPC[i].getAppearance();
+
+        randomNPCPositions[i] = randomNPC[i].getPosition();
     }
 }
 void spawnBadNPC()
@@ -95,8 +115,8 @@ void printWorld()
 }
 void printInstructions()
 {
-	setCursorPos(50, 30);
-	cout << "See if you can collect five lucky stars out of all the 10 stars.";
+	setCursorPos(25, 25);
+	cout << "Have fun in my game world!";
 	Sleep(3000);
 	system("cls");
 	return;
